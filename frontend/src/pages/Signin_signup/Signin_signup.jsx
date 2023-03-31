@@ -27,8 +27,7 @@ const Signin_signup = () => {
             <div className="overlay-panel overlay-left">
               <h1 className="title">Welcome Back </h1>
               <p className="text">
-                If you already have an account please sign in to stay connected
-                with us.
+                If you already have an account please sign and keep learning
               </p>
               <button
                 onClick={() => {

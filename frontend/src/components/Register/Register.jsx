@@ -52,18 +52,6 @@ const Register = () => {
     <div className="form-container sign-up-container">
       <form>
         <h1 className="title">Create New Account</h1>
-        <div className="social-container signup">
-          <a className="social">
-            <BsFacebook />
-          </a>
-          <a className="social">
-            <AiFillLinkedin />
-          </a>
-          <a className="social">
-            <AiOutlineInstagram />
-          </a>
-        </div>
-
         <input
           type="text"
           placeholder="Name"

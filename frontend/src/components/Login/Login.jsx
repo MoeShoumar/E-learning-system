@@ -52,17 +52,6 @@ const Login = () => {
     <div className="form-container sign-in-container">
       <form>
         <h1 className="title">Sign In</h1>
-        <div className="social-container ">
-          <a className="social">
-            <BsFacebook />
-          </a>
-          <a className="social">
-            <AiFillLinkedin />
-          </a>
-          <a className="social">
-            <AiOutlineInstagram />
-          </a>
-        </div>
         <span className="span">Already have an account? </span>
         <input
           type="email"

@@ -5,11 +5,10 @@ const jwt = require("jsonwebtoken");
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-  const validuser = await User.findOne({ email });
-  if (!validuser)
-    return res.status(404).json({ message: "Invalid Credentials" });
+  const user = await User.findOne({ email });
+  if (!user) return res.status(404).json({ message: "Invalid Credentials" });
 
-  const checkpassowrd = await bcrypt.compare(password, validuser.password);
+  const checkpassowrd = await bcrypt.compare(password, user.password);
   if (!checkpassowrd)
     return res.status(400).json({ message: "invalid credintails" });
   const token = jwt.sign(

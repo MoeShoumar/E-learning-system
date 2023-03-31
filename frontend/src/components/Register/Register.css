@@ -1,0 +1,10 @@
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  z-index: 0;
+  opacity: 0;
+}
+
+.signup {
+  margin: 12px 0;
+}

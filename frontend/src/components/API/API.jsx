@@ -26,3 +26,5 @@ export const postAPI = async (api_url, api_data, token = null) => {
     console.log(error);
   }
 };
+
+// const base_url=

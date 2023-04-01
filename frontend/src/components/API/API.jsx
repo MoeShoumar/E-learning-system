@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+const token = localStorage.getItem("jwt", jwt);
 export const getAPI = async (api_url, token = null) => {
   try {
     const headers = {};
@@ -27,4 +27,4 @@ export const postAPI = async (api_url, api_data, token = null) => {
   }
 };
 
-// const base_url=
+const base_url = "http://localhost:3000/";

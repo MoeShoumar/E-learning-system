@@ -8,6 +8,7 @@ import jwt_decode from "jwt-decode";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import "../../pages/Signin_signup/Signin_signup";
+
 const Register = () => {
   const [name, setName] = useState("");
   const [username, setUserName] = useState("");
@@ -36,8 +37,8 @@ const Register = () => {
     data.append("username", username);
     data.append("email", email);
     data.append("password", password);
-    const url = "http://localhost:8000/auth/register";
-    const response = postAPI(url, data);
+    const url = "";
+    const response = await postAPI(url, data);
     if (response.user) {
       toast.success(`You Are Now Registered.`);
       setName("");

@@ -39,9 +39,11 @@ exports.dropcourse = async (req, res) => {
     course.enrolledUsers.some(
       (enrolledUser) => enrolledUser.email === user.email
     )
-  )
+  ) {
+    course.pendingRequests.push(user);
+    await course.save();
     return res.status(200).json({ message: "pending" });
-  else {
+  } else {
     res.status(500).json({ message: "You are not enrolled in course" });
   }
 };

@@ -12,7 +12,7 @@ const {
 const router = Router();
 // router.get("/", getAllstudents);
 router.get("/adminrequest", getrequests);
-// router.post("/droprequest", handledropRequest);
+router.post("/droprequest", handledropRequest);
 // router.post("/", uploadFile);
 router.post("/course", creatCourse);
 

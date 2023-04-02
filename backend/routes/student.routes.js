@@ -8,8 +8,8 @@ const {
 } = require("../controllers/student.controllers");
 
 const router = Router();
-router.get("/", getAllfiles);
-router.post("/", uploadFormRequest);
+// router.get("/", getAllfiles);
+// router.post("/", uploadFormRequest);
 router.post("/course", enrollCourse);
 
 module.exports = router;

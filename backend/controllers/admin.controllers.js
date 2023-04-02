@@ -1,6 +1,7 @@
 const Course = require("../models/courseModel");
 const file = require("../models/fileModel");
 const form = require("../models/formModel");
+const User = require("../models/userModel");
 
 exports.creatCourse = async (req, res) => {
   const { name, CRN } = req.body;
@@ -47,6 +48,11 @@ exports.getrequests = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+exports.getAllstudents = async (req, res) => {
+  const students = await User.find({}, { password: 0 });
+  res.json(students);
+};
+
 // model.findoneAndupdate to remove class from student
 // file.findOneAndUpdate to
 

@@ -4,13 +4,12 @@ const { Router } = require("express");
 const {
   getAllstudents,
   handledropRequest,
-  uploadFile,
   getrequests,
   creatCourse,
 } = require("../controllers/admin.controllers");
 
 const router = Router();
-// router.get("/", getAllstudents);
+router.get("/studentlist", getAllstudents);
 router.get("/adminrequest", getrequests);
 router.post("/droprequest", handledropRequest);
 // router.post("/", uploadFile);

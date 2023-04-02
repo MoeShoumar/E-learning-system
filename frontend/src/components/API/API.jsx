@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-const token = localStorage.getItem("jwt", jwt);
+// const token = localStorage.getItem( "jwt");
 export const getAPI = async (api_url, token = null) => {
   try {
     const headers = {};

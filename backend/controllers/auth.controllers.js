@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) return res.status(404).json({ message: "Invalid Credentials" });
@@ -18,18 +18,25 @@ exports.login = async (req, res) => {
   res.json({ token });
 };
 
-exports.register = async (req, res) => {
+const register = async (req, res) => {
   const { email, name, password } = req.body;
-  const existingUser = await User.findOne({ email });
-  if (existingUser)
-    return res.status(409).json({ message: "email already exists" });
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  const user = new User();
-  user.email = email;
-  user.password = hashedPassword;
-  user.name = name;
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser)
+      return res.status(409).json({ message: "email already exists" });
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  user.save();
-  res.status(201).json(user);
+    const user = new User();
+    user.email = email;
+    user.password = hashedPassword;
+    user.name = name;
+
+    user.save();
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(500).json({ message: "error" });
+  }
 };
+
+module.exports = { login, register };

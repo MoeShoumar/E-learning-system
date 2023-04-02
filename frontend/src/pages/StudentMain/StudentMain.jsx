@@ -9,8 +9,9 @@ import Navbar from "../../components/navbar/Navbar";
 const StudentMain = () => {
   return (
     <div>
-      <Navbar />
-      <div className="classes"></div>
+      <div className="classes">
+        <Navbar />
+      </div>
     </div>
   );
 };

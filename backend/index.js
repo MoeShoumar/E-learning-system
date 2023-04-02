@@ -1,17 +1,24 @@
 const express = require("express");
 const cluster = require("cluster");
+const cors = require("cors");
+const mongoose = require("mongoose");
+cors();
 const app = express();
+app.use(cors);
 app.use(express.json());
 require("dotenv").config();
-
-// const userRoutes = require("./routes/user.routes");
-// app.use("/user", userRoutes);
-
-const authRoutes = require("./routes/auth.routes");
-app.use("/auth", authRoutes);
 
 app.listen(process.env.PORT, (err) => {
   if (err) console.log(err);
   console.log("Server is listining on port: ", process.env.PORT);
   require("./configs/db.config");
 });
+const adminRoutes = require("./routes/admin.routes");
+app.use("/admin", adminRoutes);
+
+const authRoutes = require("./routes/auth.routes");
+app.use("/auth", authRoutes);
+
+// const studentRoutes = require("./routes/student.routes");
+// const { authMiddleware } = require("./middlewares/auth.middleware");
+// app.use("/student", authMiddleware, studentRoutes);

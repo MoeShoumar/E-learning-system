@@ -1,9 +1,8 @@
 const course = require("../models/courseModel");
 const file = require("../models/fileModel");
 const form = require("../models/formModel");
-const User = require("../models/userModel");
 
-exports.enroll = async (req, res) => {
+exports.enrollCourse = async (req, res) => {
   try {
     const { courseId } = req.body.courseId;
     const userId = req.user.id;
@@ -25,3 +24,7 @@ exports.enroll = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// router.get("/", getAllfiles);
+// router.post("/", uploadFormRequest);
+// router.post("/course", enrollCourse);

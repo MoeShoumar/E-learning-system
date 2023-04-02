@@ -1,23 +1,29 @@
-const course = require("../models/courseModel");
+const Course = require("../models/courseModel");
+const User = require("../models/userModel");
 const file = require("../models/fileModel");
 const form = require("../models/formModel");
 
 exports.enrollCourse = async (req, res) => {
   try {
-    const { courseId } = req.body.courseId;
-    const userId = req.user.id;
-    const course = await course.findById(courseId);
+    const { CRN, email } = req.body;
+    const course = await Course.findOne({ CRN });
+    const user = await User.findOne({ email });
+    console.log(course);
+    console.log(user);
     if (!course) {
       return res.status(404).json({ message: "Course not found" });
     }
-    if (course.enrolledUsers.includes(userId)) {
+    if (
+      course.enrolledUsers.some(
+        (enrolledUser) => enrolledUser.email === user.email
+      )
+    ) {
       return res
         .status(409)
         .json({ message: "User already enrolled in course" });
     }
-    course.enrolledUsers.push(userId);
+    course.enrolledUsers.push(user);
     await course.save();
-
     res.status(200).json({ message: "Enrolled successfully" });
   } catch (error) {
     console.log(error);

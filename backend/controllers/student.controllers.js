@@ -31,6 +31,17 @@ exports.enrollCourse = async (req, res) => {
   }
 };
 
-// router.get("/", getAllfiles);
-// router.post("/", uploadFormRequest);
-// router.post("/course", enrollCourse);
+exports.dropcourse = async (req, res) => {
+  const { CRN, email } = req.body;
+  const course = await Course.findOne({ CRN });
+  const user = await User.findOne({ email });
+  if (
+    course.enrolledUsers.some(
+      (enrolledUser) => enrolledUser.email === user.email
+    )
+  )
+    return res.status(200).json({ message: "pending" });
+  else {
+    res.status(500).json({ message: "You are not enrolled in course" });
+  }
+};

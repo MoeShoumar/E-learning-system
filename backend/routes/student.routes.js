@@ -3,13 +3,13 @@ const { adminMiddleware } = require("../middlewares/admin.middleware");
 const { Router } = require("express");
 const {
   getAllfiles,
-  uploadFormRequest,
+  dropcourse,
   enrollCourse,
 } = require("../controllers/student.controllers");
 
 const router = Router();
 // router.get("/", getAllfiles);
-// router.post("/", uploadFormRequest);
+router.post("/dropcourse", dropcourse);
 router.post("/course", enrollCourse);
 
 module.exports = router;

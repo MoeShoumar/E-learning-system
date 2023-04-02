@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 
-const login = async (req, res) => {
+exports.login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) return res.status(404).json({ message: "Invalid Credentials" });
@@ -12,13 +12,13 @@ const login = async (req, res) => {
   if (!checkpassowrd)
     return res.status(400).json({ message: "invalid credintails" });
   const token = jwt.sign(
-    { id: user._id, email: user.email },
+    { id: user._id, email: user.email, role: user.role },
     process.env.SECRET_KEY
   );
   res.json({ token });
 };
 
-const register = async (req, res) => {
+exports.register = async (req, res) => {
   const { email, name, password } = req.body;
 
   try {
@@ -32,11 +32,9 @@ const register = async (req, res) => {
     user.password = hashedPassword;
     user.name = name;
 
-    user.save();
-    res.status(201).json(user);
+    await user.save();
+    res.status(201).json({ message: "success", user });
   } catch (error) {
     res.status(500).json({ message: "error" });
   }
 };
-
-module.exports = { login, register };

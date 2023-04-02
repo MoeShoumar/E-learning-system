@@ -5,5 +5,5 @@ const courseschema = new mongoose.Schema({
   CRN: Number,
 });
 
-const course = mongoose.model("courses", courseschema);
-module.exports = course;
+const Course = mongoose.model("courses", courseschema);
+module.exports = Course;

@@ -6,5 +6,5 @@ const formschema = new mongoose.Schema({
   status: String,
 });
 
-const form = mongoose.model("form", formschema);
-module.exports = form;
+const Form = mongoose.model("form", formschema);
+module.exports = Form;

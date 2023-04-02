@@ -32,7 +32,8 @@ const Register = () => {
     const url = "http://127.0.0.1:8000/auth/register",
       response = await postAPI(url, data);
     console.log(response);
-    if (response) {
+    console.log(response.data.message);
+    if (response.data.message === "success") {
       toast.success(`You Are Now Registered.`);
       setName("");
       setEmail("");

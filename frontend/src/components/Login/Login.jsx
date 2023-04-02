@@ -16,38 +16,29 @@ const Login = () => {
   let nav = useNavigate();
   const handleSignin = async (e) => {
     e.preventDefault();
-    const response = await loginUser({
-      email,
-      password,
-    });
-    if ("token" in response) {
-      var user = jwt_decode(response.token);
-      // localStorage.setItem("user_id", user._id);
-      // localStorage.setItem("username", user.username);
-
-      try {
-        localStorage.setItem("token", response["token"]);
-        if (user.user_type === 1) {
-          toast.success(`You Are Now Logged in.`);
-          nav("/doctor");
-        } else {
-          toast.success(`You Are Now Logged in.`);
-          nav("/patient");
-        }
-        setEmail("");
-        setPassword("");
-      } catch {
-        toast.error("Failed.");
+    const data_signin = { email: email, password: password };
+    const url = "http://127.0.0.1:8000/auth/login",
+      response = await postAPI(url, data_signin);
+    console.log(response);
+    localStorage.setItem("token", response.data.token);
+    let user = jwt_decode(response.data.token);
+    console.log(user.role);
+    try {
+      if (user.role === "admin") {
+        toast.success(`You Are Now Logged in.`);
+        nav("/admin");
+      } else {
+        toast.success(`You Are Now Logged in.`);
+        nav("/studentMain");
       }
-    } else {
-      toast.error("You are not Authorized!");
+      setEmail("");
+      setPassword("");
+    } catch {
+      console.log("error");
+      toast.error("Failed.");
     }
   };
-  const loginUser = async (credentials) => {
-    // url = "/";
-    // data_signin = credentials;
-    // const response = await postAPI(url, data_signin);
-  };
+
   return (
     <div className="form-container sign-in-container">
       <form>

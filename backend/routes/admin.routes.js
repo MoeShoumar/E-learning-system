@@ -13,4 +13,5 @@ const router = Router();
 // router.get("/:id", handleFormRequest);
 // router.post("/", uploadFile);
 router.post("/course", creatCourse);
+
 module.exports = router;
